@@ -28,20 +28,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Android Emulator and tests
+      - name: Run Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
-          arch: x86
+          arch: arm64-v8a
           target: google_apis
           avd-name: pixel
           force-avd-creation: true
           emulator-options: -no-window -no-audio -memory 2048 -no-snapshot
           script: npm run test:android
-          cores: 2
-          emulator-boot-timeout: 600
-          disable-animations: true
-
+          emulator-boot-timeout: 1200  
+          
       - name: Generate Allure report
         run: npm run allure:generate
 
