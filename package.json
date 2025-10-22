@@ -27,7 +27,7 @@
   "test:ios": "wdio run ./config/wdio.conf.ios.ts",
   "allure": "npx allure serve ./allure-results",
   "allure:generate": "npx allure generate ./allure-results --clean -o ./allure-report",
-  "allure:publish": "npx gh-pages -d allure-report --message 'update report' --no-history --force"
+  "allure:publish": "npx gh-pages -d allure-report --message 'update report' --no-history"
 },
   "dependencies": {
     "dotenv": "^16.3.1"
