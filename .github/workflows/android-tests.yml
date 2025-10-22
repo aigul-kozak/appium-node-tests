@@ -11,36 +11,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Проверяем код
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2. Устанавливаем JDK
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
 
+      # 3. Устанавливаем Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
+      # 4. Устанавливаем зависимости
       - name: Install dependencies
         run: npm install
 
+      # 5. Запускаем Android эмулятор
       - name: Run Android Emulator
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
-          arch: x86_64
-          target: default
-          profile: test
-          emulator-options: -no-window -no-audio
-          script: "npm run test:android"  
+          arch: x86
+          target: google_apis
+          profile: ci-test
+          emulator-options: -no-window -no-audio -memory 2048 -no-snapshot
+          script: npm run test:android  # здесь твои локальные тесты
 
+      # 6. Генерируем Allure отчет
       - name: Generate Allure report
         run: npm run allure:generate
 
+      # 7. Публикуем Allure отчет на GitHub Pages
       - name: Deploy Allure report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
