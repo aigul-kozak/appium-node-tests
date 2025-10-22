@@ -59,7 +59,18 @@ After running your tests, generate the Allure report with:
 npm run allure:generate
 You can serve the report locally:
 npm run allure
-Publishing Allure report to GitHub Pages
-If you want to automatically publish the Allure report to GitHub Pages:
+If you want to publish the Allure report to GitHub Pages:
 npm run publish:report
-This requires that the GitHub Pages workflow or script is configured in your project.
+
+Full test cycle with publishing:
+To run tests, clear previous results, generate a fresh Allure report, and publish it to GitHub Pages:
+
+npm run test:android:fresh
+
+This script:
+Cleans old results (allure-results, allure-report);
+Runs Android tests;
+Generates a new Allure report;
+Publishes it on GitHub Pages.
+
+Publishing Allure report to GitHub Pages requires that your repository and script are configured as described above.

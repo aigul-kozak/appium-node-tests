@@ -24,6 +24,8 @@
   },
   "scripts": {
   "test:android": "wdio run ./config/wdio.conf.android.ts",
+  "test:clean": "rimraf allure-results allure-report",
+  "test:android:fresh": "npm run test:clean && npm run test:android && npm run allure:generate && npm run allure:publish",
   "test:ios": "wdio run ./config/wdio.conf.ios.ts",
   "allure": "npx allure serve ./allure-results",
   "allure:generate": "npx allure generate ./allure-results --clean -o ./allure-report",
