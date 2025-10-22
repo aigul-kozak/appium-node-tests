@@ -1,0 +1,53 @@
+name: Android Local Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  android-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Start Appium server
+      run: npx appium &
+
+    - name: Start Android emulator
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 33
+        target: google_apis
+        arch: x86_64
+        force-avd-creation: true
+        emulator-options: -no-window -no-audio
+
+    - name: Run tests
+      run: npm run test:android
+
+    - name: Generate Allure report
+      run: npx allure generate allure-results --clean -o allure-report
+
+    - name: Upload Allure report artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: allure-report
+        path: allure-report
