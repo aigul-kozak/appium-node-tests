@@ -1,0 +1,6 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","156","should display result label","","Wed Oct 22 16:54:33 EEST 2025","passed","Wed Oct 22 16:54:33 EEST 2025","","AddNumber App","",""
+"","863","should display AddNumber title","","Wed Oct 22 16:54:32 EEST 2025","passed","Wed Oct 22 16:54:33 EEST 2025","","AddNumber App","",""
+"","3346","should sum 1 + 2 correctly","","Wed Oct 22 16:54:35 EEST 2025","passed","Wed Oct 22 16:54:38 EEST 2025","","AddNumber App","",""
+"","1210","should input 2 to the second field and check it","","Wed Oct 22 16:54:34 EEST 2025","passed","Wed Oct 22 16:54:35 EEST 2025","","AddNumber App","",""
+"","1224","should input 1 to the first field and check it","","Wed Oct 22 16:54:33 EEST 2025","passed","Wed Oct 22 16:54:34 EEST 2025","","AddNumber App","",""
