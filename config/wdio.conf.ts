@@ -151,6 +151,7 @@ export const config = {
       {
         outputDir: "./reporters/junit-results", // https://webdriver.io/docs/junit-reporter.html
       },
+      
     ],
         // ['allure', {outputDir: './reporters/allure-results'}]
     ],

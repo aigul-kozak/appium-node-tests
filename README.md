@@ -1,4 +1,4 @@
-# e2e-tests, wdio v8, appium v2, hybrid app (android, ios), browserstack
+# e2e-tests, wdio v8, appium v2, hybrid app (android, ios)
 
 e2e-test template with hybrid mob apps
 
@@ -16,12 +16,6 @@ e2e-test template with hybrid mob apps
 - Clone and checkout the github project
 - npm install
 
-## Setup with Browserstack
-
-- Add .env file with next variables `BROWSERSTACK_USERNAME`, `BROWSERSTACK_ACCESS_KEY`, `BROWSERSTACK_ANDROID_APP_ID` and `BROWSERSTACK_IOS_APP_ID`
-- Sign in inside browserstack and upload your mobile apps (.apk and .ipa)
-- Update `.env` file
-- `npm run test:android:bs`
 
 ### How to run the android tests on windows
 
@@ -58,4 +52,14 @@ We use eslint to lint the typescript files. The prettier plugin in eslint tries 
 All test cases should be coded inside the test folder. There you can organize tests for different apps (e.g. msb-app) and define generic classes with getters and setters to use classes those methods inside other classes.
 
 We work with the Page Object Pattern described in <https://webdriver.io/docs/pageobjects.html>. The main idea is to encapsulate logic into page classes and use the logic in the spec files to run the tests.
-For instance we defined the LoginPage and the element as attributes in a class and reuse them in the code.
+
+### Generating Allure reports
+
+After running your tests, generate the Allure report with:
+npm run allure:generate
+You can serve the report locally:
+npm run allure
+Publishing Allure report to GitHub Pages
+If you want to automatically publish the Allure report to GitHub Pages:
+npm run publish:report
+This requires that the GitHub Pages workflow or script is configured in your project.
