@@ -1,4 +1,4 @@
-name: Run Appium Tests and Publish Allure Report
+name: Run Android Tests and Publish Allure Report
 
 on:
   push:
@@ -7,30 +7,45 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-and-publish:
+  android-tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
+      # 1. Клонируем репозиторий
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      # 2. Устанавливаем Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
 
+      # 3. Устанавливаем зависимости
       - name: Install dependencies
         run: npm install
 
+      # 4. Устанавливаем Android SDK и эмулятор
+      - name: Setup Android SDK
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          target: google_apis
+          arch: x86_64
+          emulator-options: "-no-snapshot -noaudio -no-boot-anim"
+
+      # 5. Запуск тестов
       - name: Run Android tests
         run: npm run test:android
 
+      # 6. Генерация Allure отчета
       - name: Generate Allure report
         run: npm run allure:generate
 
+      # 7. Публикация отчета на GitHub Pages
       - name: Deploy Allure report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3.9.3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
-

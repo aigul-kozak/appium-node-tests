@@ -15,7 +15,7 @@ export const config = {
     capabilities: [{
       // capabilities for local Appium web tests on an Android Emulator or Real device
       platformName: 'Android',
-      'appium:deviceName': 'ZE2232TTQ8',
+      'appium:deviceName': 'hupzprojjzbulzsg',
       "appium:app": join(process.cwd(), "./apps/android/app-debug.apk"),
       'appium:platformVersion': '10.0',
       'appium:automationName': 'UiAutomator2'
