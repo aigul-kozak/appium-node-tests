@@ -63,7 +63,6 @@ typings/
 # auto generated files from reporters such as Allure or Junit
 reporters/*
 
-apps
 ChromeDriver.txt
 
 out
